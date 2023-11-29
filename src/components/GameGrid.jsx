@@ -1,26 +1,9 @@
-import { useEffect, useState } from "react"
 import AtomicSpinner from 'atomic-spinner'
-import apiClient from "../services/api-client"
 import { Text } from "@chakra-ui/react"
+import useGames from "../hooks/useGames"
 
 const GameGrid = () => {
-    const [games, setGames] = useState([])
-    const [error, setError] = useState('')
-    const [loading, setLoading] = useState(false)
-
-    useEffect(() => {
-        setLoading(true)
-
-        apiClient.get('/games')
-            .then((res) => {
-                setGames(res.data.results)
-                setLoading(false)
-            })
-            .catch((err) => {
-                setError(err.message)
-                setLoading(false)
-            })
-    }, [])
+    const { games, error, loading } = useGames()
 
     return (
         <>
