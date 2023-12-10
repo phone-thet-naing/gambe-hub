@@ -1,36 +1,20 @@
 import AtomicSpinner from 'atomic-spinner'
-import { Text } from "@chakra-ui/react"
+import { SimpleGrid, Text } from "@chakra-ui/react"
 import useGames from "../hooks/useGames"
+import GameCard from './GameCard'
 
-const GameGrid = () => {
-    const { games, error, loading } = useGames()
+const GameGrid = ({ games, loading }) => {
+    // const [ games, error, loading ] = [...props]
 
     return (
         <>
             { loading && <AtomicSpinner atomSize='60px' /> }
-            { error && <Text color='red'>{error}</Text> }
-            {!error && !loading &&
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Index</th>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Release Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {games.map((game, index) => 
-                            <tr key={game.id}>
-                                <td>{index + 1}</td>
-                                <td>{game.id}</td>
-                                <td>{game.name}</td>
-                                <td>{game.released}</td>
-                            </tr>
-                        )}
-                    </tbody>
-            </table>
-            }
+            {/* { error && <Text color='red'>{error}</Text> } */}
+            <SimpleGrid padding={"1rem 1rem"} columns={{sm: 1, md: 2, lg: 3}} spacing={10}>
+                { games.map((game) => {
+                    return <GameCard game={game} />
+                }) }
+            </SimpleGrid>
         </>
     )
 }

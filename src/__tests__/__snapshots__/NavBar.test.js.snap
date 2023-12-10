@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`navbar renders correctly 1`] = `
-<h1>
-  NavBar
-</h1>
-`;
