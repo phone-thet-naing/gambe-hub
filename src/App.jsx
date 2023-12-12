@@ -28,7 +28,7 @@ function App() {
             <GameGrid 
               games={games} 
               loading={loading} />
-          </GridItem>
+            </GridItem>
         </Grid>
       }
     </>
