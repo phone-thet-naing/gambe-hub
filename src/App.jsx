@@ -4,6 +4,10 @@ import './App.css'
 import GameGrid from './components/GameGrid'
 import useGames from './hooks/useGames'
 import { BsAlarm } from 'react-icons/bs'
+import useGenres from './hooks/useGenres'
+import GenreList from './components/GenreList'
+import apiClient from './services/api-client'
+import { useEffect } from 'react'
 
 function App() {
   const { games, error, loading } = useGames()
@@ -24,8 +28,9 @@ function App() {
             </GridItem>
             <Show above='md'>
               <GridItem area='aside'>
-                <VStack width={"1rem"}>
+                <VStack>
                   {/* <Icon as={BsAlarm} /> */}
+                  <GenreList />
                 </VStack>
               </GridItem>
             </Show>

@@ -16,7 +16,7 @@ const GameGrid = ({ games, loading }) => {
                 { loading && '123456'.split("").map(skeleton => <GameCardSkeleton key={skeleton} />) }
                 {             
                     games.map((game) => {
-                        return <GameCard game={game} />
+                        return <GameCard key={game.id} game={game} />
                     }) 
                 }   
             </SimpleGrid>

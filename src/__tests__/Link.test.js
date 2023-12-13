@@ -34,7 +34,5 @@ it.only('using rtl', async () => {
     <Link page="http://www.youtube.com" children='Hello' />
   )
 
-  screen.debug()
-
   expect(screen).toMatchSnapshot()
 })
