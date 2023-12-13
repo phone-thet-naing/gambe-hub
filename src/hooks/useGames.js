@@ -15,14 +15,12 @@ function useGames() {
         apiClient.get('/games', { signal: signal })
             .then((res) => {
                 setGames(res.data.results)
-                // console.debug("games objects", res.data.results)
                 setLoading(false)
             })
             .catch((err) => {
                 if (err instanceof CanceledError) return
                 setError(err.message)
                 setLoading(false)
-                // console.log("Games were not saved")
             })
 
         return () => controller.abort()

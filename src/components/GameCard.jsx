@@ -2,10 +2,12 @@ import { Badge, Box, Card, CardBody, HStack, Heading, Image, Stack, Text, VStack
 import PlatformIconList from './PlatformIconList';
 import CriticScore from './CriticScore';
 import getCroppedImageUrl from '../services/image-url';
+import GameCardContainer from './GameCardContainer';
 
 const GameCard = ({ game }) => {
 	return (
-		<Card borderRadius={'0.625rem'} overflow='hidden'>
+		<GameCardContainer>
+			<Card>
 			<Image src={getCroppedImageUrl(game.background_image)} />
 			<CardBody fontFamily="Varela Round">
 				<HStack justifyContent="space-between">
@@ -24,6 +26,7 @@ const GameCard = ({ game }) => {
 				</HStack>
 			</CardBody>
 		</Card>
+		</GameCardContainer>
 	);
 };
 
