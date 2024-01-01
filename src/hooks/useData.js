@@ -2,12 +2,12 @@ import { CanceledError } from "axios";
 import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
 
-function useData(endpoint, requestConfig = null) {
+function useData(endpoint, requestConfig = null, deps = null) {
     const [data, setData] = useState([]);
     const [error, setError] = useState("");
     const [isLoading, setLoading] = useState(false);
 
-    // console.log("requestConfig: ", requestConfig, "\n", "deps: ", deps)
+    console.log("requestConfig: ", requestConfig);
 
     useEffect(() => {
         setLoading(true);
@@ -16,7 +16,6 @@ function useData(endpoint, requestConfig = null) {
         apiClient
             .get(endpoint, { signal: controller.signal, ...requestConfig })
             .then((response) => {
-                // console.log("Genres: ", response.data.results);
                 setData(response.data.results);
                 setLoading(false);
             })
@@ -27,7 +26,7 @@ function useData(endpoint, requestConfig = null) {
             });
 
         return () => controller.abort();
-    }, []);
+    }, deps ? [...deps] : []);
 
     return { data, error, isLoading };
 }
