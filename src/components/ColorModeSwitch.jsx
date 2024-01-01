@@ -4,7 +4,7 @@ import { DarkModeSwitch } from "react-toggle-dark-mode"
 import { Switch } from "@chakra-ui/react";
 
 function ColorModeSwitch() {
-    const { colorMode, toggleColorMode } = useColorMode()
+  const { colorMode, toggleColorMode } = useColorMode()
 
   return (
     <HStack>

@@ -9,10 +9,10 @@ const GameCard = ({ game }) => {
 		<GameCardContainer>
 			<Card>
 			<Image src={getCroppedImageUrl(game.background_image)} />
-			<CardBody fontFamily="Varela Round">
+			<CardBody fontFamily="Varela Round" boxSizing='border-box' padding="0.5rem">
 				<HStack justifyContent="space-between">
 					<Heading
-						fontSize={'1.5rem'}
+						fontSize={'1.2rem'}
 						fontWeight={'600'}
 						fontFamily={"Varela Round"}
 					>

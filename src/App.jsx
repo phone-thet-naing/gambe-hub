@@ -2,45 +2,40 @@ import { Button, ButtonGroup, Grid, GridItem, Icon, Show, Text, VStack } from '@
 import NavBar from './components/Navbar'
 import './App.css'
 import GameGrid from './components/GameGrid'
-import useGames from './hooks/useGames'
-import { BsAlarm } from 'react-icons/bs'
-import useGenres from './hooks/useGenres'
 import GenreList from './components/GenreList'
-import apiClient from './services/api-client'
-import { useEffect } from 'react'
+import { useState } from 'react'
+import PlatformSelector from './components/PlatformSelector'
 
 function App() {
-  const { games, error, loading } = useGames()
+  const [selectedGenre, setSelectedGenre] = useState(null);
+  const [selectedPlatform, setSelectedPlatform] = useState(null);
 
   return (
-    <>
-      {
-        error
-          ?
-          <Text color='red'>{error}</Text>
-          :
-          <Grid templateAreas={{
-            base: `"nav" "main"`,
-            lg: `"nav nav" "aside main"`
-          }}>
-            <GridItem area='nav'>
-              <NavBar />
-            </GridItem>
-            <Show above='md'>
-              <GridItem area='aside'>
-                <VStack>
-                  {/* <Icon as={BsAlarm} /> */}
-                  <GenreList />
-                </VStack>
-              </GridItem>
-            </Show>
-            <GridItem area='main'>
-              <GameGrid
-                games={games}
-                loading={loading} />
-            </GridItem>
-          </Grid>
-      }
+    <>     
+      <Grid templateAreas={{
+        base: `"nav" "main"`,
+        md: `"nav nav" "aside main"`,
+        lg: `"nav nav" "aside main"`
+      }}
+      
+      templateColumns={{
+        base: "1fr",
+        lg: "230px 1fr"
+      }}
+      >
+        <GridItem area='nav'>
+          <NavBar />
+        </GridItem>
+        <Show above='lg'>
+          <GridItem area='aside' paddingX={5} paddingY={5}>
+            <GenreList onGenreSelected={(genre) => setSelectedGenre(genre)} />
+          </GridItem>
+        </Show>
+        <GridItem area='main'>
+          <PlatformSelector onOptionSelected={(platform) => setSelectedPlatform(platform)} />
+          <GameGrid selectedGenre={selectedGenre} selectedPlatform={selectedPlatform} />
+        </GridItem>
+      </Grid>
     </>
   )
 }
