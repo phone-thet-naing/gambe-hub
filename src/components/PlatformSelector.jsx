@@ -1,25 +1,30 @@
-import { Button, Menu, MenuButton, MenuCommand, MenuIcon, Select } from '@chakra-ui/react'
-import React from 'react'
+import { Button, Menu, MenuButton, MenuCommand, MenuIcon, MenuItem, MenuList, Select } from '@chakra-ui/react'
 import usePlatforms from '../hooks/usePlatforms'
+import { BsChevronDown } from 'react-icons/bs';
 
 const PlatformSelector = ({ onOptionSelected }) => {
-    const { data: platforms } = usePlatforms();
+  const { data: platforms } = usePlatforms();
 
-    // console.log("Platforms: ", platforms);
+  function handleChange(id) {
+    const [selectedPlatform] = platforms.filter((platform) => platform.id == id);
+    console.log("Selected Platform: ", selectedPlatform);
+    onOptionSelected(selectedPlatform);
+  }
 
-    return (
-        <>
-            <Select placeholder='Select Platform' size="md" width="170px" onChange={(event) => onOptionSelected(event.target.value)}>
-              {platforms.map(platform => (
-                <option
-                  key={platform.id}
-                  value={platform.name}>
-                  {platform.name}
-                </option>))
-              }
-            </Select>
-        </>
-    )
+  return (
+    <Menu>
+      <MenuButton as={Button} rightIcon={<BsChevronDown />}>
+        Platforms
+      </MenuButton>
+      <MenuList>
+        {platforms.map((platform) => (
+          <MenuItem key={platform.id} onClick={() => handleChange(platform.id)}>
+            {platform.name}
+          </MenuItem>
+        ))}
+      </MenuList>
+    </Menu>
+  );
 }
 
 export default PlatformSelector

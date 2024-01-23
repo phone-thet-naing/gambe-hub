@@ -1,11 +1,13 @@
-import { HStack, Image, useColorMode } from "@chakra-ui/react"
+import { HStack, Heading, Image, VStack, useColorMode } from "@chakra-ui/react"
 import ColorModeSwitch from "./ColorModeSwitch"
 import { useEffect } from "react";
 // import logo from "../assets/breezy-high-resolution-logo-black-transparent.webp"
 import { useState } from "react";
 import React from "react";
+import SearchInput from "./SearchInput";
+import SearchableDropdown from "./SearchableDropdown";
 
-function NavBar() { 
+function NavBar({ onSearchValueProvided, onPartialSearchValueProvided }) { 
   const { colorMode } = useColorMode();
   const [logo, setLogo] = useState("");
   
@@ -14,8 +16,13 @@ function NavBar() {
   }, [colorMode])  
 
   return (
-    <HStack justifyContent='space-between' padding="1rem 1rem 0 1rem">        
-        <Image src={logo} height="30px" />
+    <HStack padding="1rem 1rem 0 1rem" marginBottom={2}>        
+        {/* <Image src={logo} height="30px" /> */}
+        <Heading fontFamily="'Bungee Spice', sans-serif;" >GHub</Heading>
+          <SearchInput 
+            onEnterPress={(searchValue) => onSearchValueProvided(searchValue)} 
+            onSearchInputChange={(partialSearchValue) => onPartialSearchValueProvided(partialSearchValue)} 
+          />         
         <ColorModeSwitch />
     </HStack>
   ) 
