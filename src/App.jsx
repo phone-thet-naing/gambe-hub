@@ -1,5 +1,5 @@
 import { Box, Button, ButtonGroup, Grid, GridItem, HStack, Icon, Show, Text, VStack, Heading, list, UnorderedList, ListItem, Select } from '@chakra-ui/react'
-import NavBar from './components/Navbar'
+import NavBar from './components/Navbar.jsx'
 import './App.css'
 import './output.css'
 import GameGrid from './components/GameGrid'
