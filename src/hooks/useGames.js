@@ -1,4 +1,5 @@
-import useData from "./useData";
+// import useData from "./useData";
+import useData from "../react-query/hooks/useData";
 
 const useGames = (gameQuery) =>
   useData(

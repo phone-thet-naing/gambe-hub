@@ -6,6 +6,7 @@ import { useState } from "react";
 import React from "react";
 import SearchInput from "./SearchInput";
 import SearchableDropdown from "./SearchableDropdown";
+import ColorModeSetting from "./ColorModeSetting";
 
 function NavBar({ onSearchValueProvided, onPartialSearchValueProvided }) { 
   const { colorMode } = useColorMode();
@@ -24,6 +25,7 @@ function NavBar({ onSearchValueProvided, onPartialSearchValueProvided }) {
             onSearchInputChange={(partialSearchValue) => onPartialSearchValueProvided(partialSearchValue)} 
           />         
         <ColorModeSwitch />
+        <ColorModeSetting />
     </HStack>
   ) 
 }

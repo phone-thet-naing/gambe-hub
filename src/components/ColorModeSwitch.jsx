@@ -8,13 +8,13 @@ function ColorModeSwitch() {
 
   return (
     <HStack>
-        <DarkModeSwitch 
-            moonColor="white" 
-            sunColor="black" 
-            checked={colorMode === 'dark'}
-            onChange={toggleColorMode} 
-            size={30}
-        />
+      <DarkModeSwitch
+        moonColor="white"
+        sunColor="black"
+        checked={colorMode === 'dark'}
+        onChange={toggleColorMode}
+        size={30}
+      />
     </HStack>
   )
 }

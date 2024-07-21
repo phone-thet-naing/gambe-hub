@@ -1,6 +1,7 @@
-import { Box, Button, ButtonGroup, Grid, GridItem, HStack, Icon, Show, Text, VStack, Heading, list, UnorderedList, ListItem } from '@chakra-ui/react'
+import { Box, Button, ButtonGroup, Grid, GridItem, HStack, Icon, Show, Text, VStack, Heading, list, UnorderedList, ListItem, Select } from '@chakra-ui/react'
 import NavBar from './components/Navbar'
 import './App.css'
+import './output.css'
 import GameGrid from './components/GameGrid'
 import GenreList from './components/GenreList'
 // import GenreList from './react-query/GenreList' 
@@ -10,15 +11,17 @@ import SortSelector from './components/SortSelector'
 import GameHeading from './components/GameHeading'
 import PostList from './react-query/PostList'
 import LoginForm from './components/authentication/LoginForm'
+import GameList from './react-query/GameList'
+import TodoList from './react-query/TodoList'
+import Todo from './react-query/Todo'
+
 
 function App() {
   const [gameQuery, setGameQuery] = useState({ genre: null, platform: null });
 
-  return (
-      <PostList />
-      // <GenreList />
-      // <LoginForm />
-  )
+  // return (
+  //   <PostList />
+  // )
 
   return (
     <>
@@ -51,7 +54,14 @@ function App() {
             <GameHeading gameQuery={gameQuery} />
             <HStack>
               <PlatformSelector onOptionSelected={(platform) => setGameQuery({ ...gameQuery, platform })} />
-              <SortSelector onCategorySelect={(sortingCategory) => setGameQuery({ ...gameQuery, sortingCategory })} />
+              <SortSelector filters={gameQuery} onCategorySelect={(sortingCategory) => setGameQuery({ ...gameQuery, sortingCategory })} />
+              <Button
+                onClick={() =>
+                  setGameQuery({
+                    platform: null,
+                    sortingCategory: null,
+                    genre: null
+                  })}>Clear Filter</Button>
             </HStack>
           </Box>
 

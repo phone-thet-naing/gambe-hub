@@ -7,10 +7,10 @@ import { useInView } from "react-intersection-observer";
 
 const PostList = () => {
     const { ref, inView } = useInView();
-    const LIMIT = 10;
-    const { data, error, isLoading, fetchNextPage, isFetchingNextPage, hasNextPage, isSuccess } = usePosts({ LIMIT });
+    const LIMIT = 15;
+    const { data, error, isLoading, fetchNextPage, isFetchingNextPage, hasNextPage, isSuccess } = usePosts({ LIMIT })
 
-    // console.log(posts)
+    console.log("inView value: ", inView)
 
     useEffect(() => {
         if (inView && hasNextPage) {
@@ -48,6 +48,7 @@ const PostList = () => {
                             borderRadius: "4px"
                         }}
                         key={post.id}>
+                            {post.id}. 
                         {post.title}
                     </div>
                 )

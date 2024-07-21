@@ -1,11 +1,16 @@
-import apiClient from "../../services/api-client"
+import { useQuery } from "@tanstack/react-query"
+import axios from "axios"
 
 const useTodos = () => {
+
   return useQuery({
-    queryKey: ['genres'],
-    queryFn: () => apiClient.get('/genres')
-      .then((res) => res.data.results)
+    queryKey: ['todos'],
+    queryFn: () => 
+      axios
+        .get("https://jsonplaceholder.typicode.com/todos")
+        .then((res) => res.data)
   })
+
 }
 
 export default useTodos
